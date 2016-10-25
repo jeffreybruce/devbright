@@ -1,0 +1,68 @@
+﻿@model devbright.Models.Home
+
+@{
+    ViewBag.Title = "MoreInformation";
+}
+
+<h2>More Information For @Html.DisplayFor(model => model.title)</h2>
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+       
+        <dt>
+            Sale Price
+        </dt>
+
+        <dd>
+            $@Html.DisplayFor(model => model.salePrice)
+        </dd>
+
+        <dt>
+            Zip Code
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zipCode)
+        </dd>
+
+        <dt>
+            # Bedrooms
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOfBedrooms)
+        </dd>
+
+    </dl>
+</div>
+
+@using (Html.BeginForm(Html.BeginForm("MoreInformation", "Homes", FormMethod.Post, new { onsubmit = "alert('Thank you for your interest.  You will be contacted by the email provided within 2 business days.')" })))
+{
+
+<table>
+    <tr>
+        <td>
+            For more information, please enter your name email address below.
+        </td>
+    </tr>
+    <tr>
+        <td>Name: </td>
+        <td>@Html.TextBox("Name")</td>
+    </tr>
+    <tr>
+        <td>Email Address: </td>
+        <td>@Html.TextBox("EmailAddress")</td>
+    </tr>
+    <tr>
+        <td><input type="hidden" value="@Model.homeID" id="homeID" name="homeID" /></td>
+        <td><input type="submit" value="Submit" /></td>
+    </tr>
+</table>
+}
+
+<p>
+
+    @Html.ActionLink("Back to Search", "Search")
+</p>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<devbright.Models.Home>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    @Html.ActionLink("Add Home", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Sale Price
+        </th>
+        <th>
+            Zip Code
+        </th>
+        <th>
+            # Bedrooms
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            $@Html.DisplayFor(modelItem => item.salePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.zipCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numberOfBedrooms)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.homeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.homeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.homeID })
+        </td>
+    </tr>
+}
+
+</table>

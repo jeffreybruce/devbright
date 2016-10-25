@@ -1,0 +1,95 @@
+﻿@model IEnumerable<devbright.Models.Home>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<script type="text/javascript">
+
+    function ClearFilters() {
+        document.getElementById('TitleFilter').value = "";
+        document.getElementById('MinPrice').value = "";
+        document.getElementById('MaxPrice').value = "";
+        document.getElementById('ZipCodeFilter').value = "";
+        document.getElementById('MinBedrooms').value = "";
+        document.getElementById('MaxBedrooms').value = "";
+
+        window.location = "/Homes/Search";
+    }
+
+</script>
+
+
+<h2>Search For Homes</h2>
+
+@using (Html.BeginForm())
+{
+    <table style="width:1000px;">
+        <tr>
+            <td style="text-align:right;">Title</td>
+            <td>@Html.TextBox("TitleFilter", ViewData["TitleFilter"])</td>
+            <td style="text-align:right;">Minimum Price:</td>
+            <td> @Html.TextBox("MinPrice", ViewData["MinPrice"])</td>
+            <td style="text-align:right;"> Maximum Price: </td>
+            <td>@Html.TextBox("MaxPrice", ViewData["MaxPrice"])</td>
+        </tr>
+        <tr>
+            <td style="text-align:right;">Zip Code:</td>
+            <td>@Html.TextBox("ZipCodeFilter", ViewData["ZipCodeFilter"])</td>
+            <td style="text-align:right;">Minimum Bedrooms:</td>
+            <td> @Html.TextBox("MinBedrooms", ViewData["MinBedrooms"])</td>
+            <td style="text-align:right;"> Maximum Bedrooms:</td>
+            <td>@Html.TextBox("MaxBedrooms", ViewData["MaxBedrooms"])</td>
+        </tr>
+    </table>
+        <br />
+        <table style="width:1000px;">
+            <tr style="text-align:right;">
+                <td>
+                    <button type="button" id="clear" name="clear" onclick="ClearFilters();" class="btn btn-default">Clear Filters</button>
+                    <input type="submit" value="Search" class="btn btn-default" style="text-align:right;" />
+                </td>
+            </tr>
+        </table>
+}
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Title", "Search", new { sortOrder = "title", sortDir = ViewData["sortDir"] })
+        </th>
+        <th>
+            Sale Price
+        </th>
+        <th>
+            Zip Code
+        </th>
+        <th>
+            # Bedrooms
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salePrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.zipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numberOfBedrooms)
+            </td>
+            <td>
+                @Html.ActionLink("More Information", "MoreInformation", new { id = item.homeID })
+            </td>
+        </tr>
+    }
+
+</table>

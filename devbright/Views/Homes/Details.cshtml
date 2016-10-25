@@ -1,0 +1,48 @@
+﻿@model devbright.Models.Home
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>Home</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Title
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            Sale Price
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salePrice)
+        </dd>
+
+        <dt>
+            Zip Code
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zipCode)
+        </dd>
+
+        <dt>
+            # Bedrooms
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOfBedrooms)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.homeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
